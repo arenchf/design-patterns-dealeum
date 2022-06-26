@@ -1,0 +1,68 @@
+{%extends 'layout/basic-layout.html'%} {%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/deal/deal_detail.scss.css')}}" />
+{%endblock style%} {%block content%}
+<div id="content">
+  <div class="deal-top-section">
+    <div class="deal-image-wrapper">
+      <img class="deal-image" src="{{url_for('static', filename='uploads/' + deal.deal_image)}}" alt="deal image" />
+    </div>
+
+    <div class="deal-middle">
+      <div class="deal-title-wrapper">
+        <h2>{{deal.title}}</h2>
+      </div>
+      <div class="deal-message-wrapper">
+        <p class="deal-message">{{deal.message}}</p>
+      </div>
+    </div>
+
+    <div class="deal-points-section-wrapper">
+      <div class="deal-points-section">
+        <button class="deal-plus" onclick="upvoteDeal(this,'{{deal.slug}}')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class="deal-points">
+          <i class="fa fa-fire" style="color: red" aria-hidden="true"><p>{{deal.points}}</p></i>
+          <!-- <i class="fa fa-snowflake-o" style="color: blue" aria-hidden="true"><p>-1.6k</p></i> -->
+        </div>
+        <button class="deal-minus" onclick="downvoteDeal(this,'{{deal.slug}}')"><i class="fa fa-minus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+  <a href="{{deal.url}}">GO TO DEAL</a>
+  <div class="comments-seperator"></div>
+
+  <div class="comments-block">
+    <div id="write-comment-wrapper">
+      <label for="write-comment"></label>
+      <div id="textarea-wrapper"><textarea placeholder="write your comment here..." name="write-comment" id="write-comment"></textarea></div>
+      <button onclick="sendComment('{{deal.slug}}')">Send</button>
+    </div>
+    {%for comment in comments%}
+    <div class="comment">
+      <div class="comment-user-wrapper">
+        <div class="comment-user">
+          <h3
+          title={%for role in comment.user.roles%}
+        "{{role.name}}"
+        {%endfor%}
+          class="comment-username"
+        >
+          {{comment.user.username}}
+        </h3>
+        <img src="{{url_for('static', filename='uploads/' + comment.user.profile_image)}}" alt="" />
+        </div>
+        
+        <div class="comment-infos">
+          <p>{{ comment.created_at.strftime('%d-%m-%Y') }}</p>
+        </div>
+        
+      </div>
+      <div class="comment-message-wrapper">
+        <p>{{comment.message}}</p>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock content%} {%block script%}
+<script src="{{ url_for('static', filename='js/deal/deal_detail.js') }}"></script>
+{%endblock script%}

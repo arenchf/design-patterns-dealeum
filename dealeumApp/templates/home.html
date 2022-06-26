@@ -1,0 +1,68 @@
+{%extends 'layout/basic-layout.html'%} {%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/home.scss.css')}}" />
+{%endblock style%} {%block content%}
+<div id="content">
+  <div id="deal-utils-wrapper">
+    <div id="deal-utils">
+      <button id="add-deal"><a href="/deals/add">Add Deal</a></button>
+      <label for="dealsPerPage">
+        Show
+        <select id="dealsPerPage">
+          <option value="volvo" selected>10</option>
+          <option value="saab">25</option>
+          <option value="vw">50</option>
+        </select>
+        Deals
+      </label>
+    </div>
+  </div>
+  <div id="deal-block">
+    <div id="deal-list">
+      {% for deal in deals.items %}
+      <div class="deal">
+        <div class="deal-left">
+          <div class="deal-image-wrapper">
+            <img class="deal-image" src="{{url_for('static', filename='uploads/' + deal.deal_image)}}" alt="deal image" />
+          </div>
+        </div>
+
+        <div class="deal-content">
+          <h2 class="deal-title"><a href="deals/{{deal.slug}}">{{ deal.title }}</a></h2>
+          <div class="deal-prices">
+            <div class="deal-new-price"><h3>{{deal.new_price}}€</h3></div>
+            <div class="deal-old-price"><h3>{{deal.old_price}}€</h3></div>
+          </div>
+          <p class="deal-message">{{ deal.message }}</p>
+        </div>
+
+        <div class="deal-right">
+          <div class="deal-points-section">
+            <button class="deal-plus" onclick="upvoteDeal(this,'{{deal.slug}}')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <div class="deal-points">
+              <i class="fa fa-fire" style="color: red" aria-hidden="true"><p>{{deal.points}}</p></i>
+              <!-- <i class="fa fa-snowflake-o" style="color: blue" aria-hidden="true"><p>-1.6k</p></i> -->
+            </div>
+            <button class="deal-minus" onclick="downvoteDeal(this,'{{deal.slug}}')"><i class="fa fa-minus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="deal-navigation">
+      <p class="deal-previous">
+        {% if deals.has_prev %}
+        <a href="{{ url_for('main.home', page=deals.prev_num) }}">&lt;&lt; Newer Deals</a>{% else %}&lt;&lt; Newer Deals{% endif %}
+      </p>
+      |
+      <p class="deal-next">{% if deals.has_next %}<a href="{{ url_for('main.home', page=deals.next_num) }}">Older Deals &gt;&gt;</a>{% else %}Older Deals &gt;&gt;{% endif %}</p>
+
+      <p>DEAL TOTAL: {{deals.total}} |</p>
+      <p>DEAL PAGE: {{deals.page}} |</p>
+      <p>DEAL PER PAGE: {{deals.per_page}}</p>
+    </div>
+  </div>
+</div>
+
+{%endblock content%} {%block script%}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{%endblock script%}

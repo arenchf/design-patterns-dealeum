@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+    // font-family: 'Poppins', sans-serif;
+    // font-family: 'Roboto', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul{
+    margin:0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    background-color: rgb(221, 221, 221);
+}
+
+.flash-messages{
+    
+    max-width: 380px;
+    margin: auto;
+    margin-bottom: 20px;
+    
+    
+
+    ul{
+        list-style-type: none;
+        li{
+            padding: 20px;
+            border-radius: 5px;
+        }
+        li.fail{
+            background-color: rgb(233, 89, 89);
+            outline: 2px solid rgb(255, 32, 32);
+            border: 2px solid rgb(255, 202, 202);
+        }
+        li.success{
+            background-color: rgb(89, 233, 113);
+            outline: 2px solid rgb(32, 255, 32);
+            border: 2px solid rgb(202, 255, 205);
+        }
+    }
+}

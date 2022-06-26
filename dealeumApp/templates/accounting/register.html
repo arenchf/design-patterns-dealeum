@@ -1,0 +1,28 @@
+{%extends 'layout/basic-layout.html'%} {%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/accounting/register.scss.css')}}" />
+{%endblock style%} {%block content%}
+
+<div class="content">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div><p>{{ messages[0] }}</p></div>
+  {% endif %} {% endwith %}
+
+  <form action="/auth/register" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Email" />
+    <label for="uname">Username</label>
+    <input type="text" name="username" id="uname" placeholder="Username" />
+    <label for="pwd">Password</label>
+    <input type="password" name="password" id="pwd" placeholder="******" />
+    <label for="pwd2">Repeat Password</label>
+    <input type="password" name="password_check" id="pwd2" placeholder="******" />
+
+    <div class="bottom-row">
+      <a href="/auth/register">You have an account? <span>Login here.</span></a> <button type="submit">Register</button>
+    </div>
+  </form>
+</div>
+
+{%endblock content%} {%block script%}
+<script src="{{ url_for('static', filename='js/accounting/register.js') }}"></script>
+{%endblock script%}

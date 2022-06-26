@@ -1,0 +1,50 @@
+
+
+.content{
+    width: fit-content;
+    background-color: white;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+
+    form{
+        margin: auto;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        label{
+            font-size: 2em;
+            display: block;
+            margin:auto;
+        }
+        input{
+            font-size: 2em;
+            display: block;
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid #777
+        }
+        div.bottom-row{
+            margin-top: 20px;
+            display: flex;
+            button{
+                
+                margin-left: auto;
+                background-color: rgb(27, 122, 167);
+                border-radius: 20px;
+                padding: 10px 15px;
+                border: none;
+                font-size: 2em;
+                
+            }
+            a{
+                line-height:63px;
+                color: black;
+                text-decoration: none;
+                span{
+                    color: blue;
+                }
+            }
+        }
+    }
+}

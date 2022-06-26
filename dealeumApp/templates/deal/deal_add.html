@@ -1,0 +1,27 @@
+{%extends 'layout/basic-layout.html'%} {%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/deal/deal_add.scss.css')}}" />
+{%endblock style%} {%block content%}
+
+<div class="content">
+  <form id="add-deal-form">
+    <div class="stretch">
+      <label for="deal-url">Deal URL</label>
+      <input type="text" name="deal_url" id="deal-url" placeholder="https://www.amazon.de/dp/B08H93ZRK9" />
+      <label for="deal-title">Deal Title</label>
+      <input type="text" name="title" id="deal-title" placeholder="Amazon Blackfriday Deals Playstation 5 " />
+      <label for="new-price">New Price</label>
+      <input type="number" name="new_price" id="new-price" placeholder="442.5" step="0.01" />
+      <label for="old-price">Old Price</label>
+      <input type="number" name="old_price" id="old-price" placeholder="499" step="0.01" />
+      <label for="message">Message</label>
+      <textarea rows="4" cols="50" name="message" id="message" form="add-deal-form"></textarea>
+    </div>
+    <div class="bottom-row">
+      <button type="button" onclick="addDeal()">Add Deal</button>
+    </div>
+  </form>
+</div>
+
+{%endblock content%} {%block script%}
+<script src="{{ url_for('static', filename='js/deal/deal_add.js') }}"></script>
+{%endblock script%}

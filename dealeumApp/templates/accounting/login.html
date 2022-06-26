@@ -1,0 +1,19 @@
+{%extends 'layout/basic-layout.html'%} {%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/accounting/login.scss.css')}}" />
+{%endblock style%} {%block content%}
+
+<div class="content">
+  <form action="/auth/login" method="POST">
+    <label for="uname">Username</label>
+    <input type="text" name="username" id="uname" placeholder="Username" />
+    <label for="pwd">Password</label>
+    <input type="password" name="password" id="pwd" placeholder="********" />
+    <div class="bottom-row">
+      <a href="/auth/register">You have no account? <span>Register here.</span></a> <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
+
+{%endblock content%} {%block script%}
+<script src="{{ url_for('static', filename='js/accounting/login.js') }}"></script>
+{%endblock script%}
